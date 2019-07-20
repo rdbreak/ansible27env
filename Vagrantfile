@@ -47,10 +47,3 @@ config.vm.define "node2" do |node2|
   end
 end
 end
-ansible 
-vagrant 
-automated 
-ansible-playbook 
-deployment 
-virtualbox 
-python
