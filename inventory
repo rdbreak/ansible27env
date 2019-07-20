@@ -1,0 +1,10 @@
+[all]
+control.node.example.com
+ans1.node.example.com
+ans2.node.example.com
+[control]
+control.node.example.com
+[node1]
+ans1.node.example.com
+[node2]
+ans2.node.example.com

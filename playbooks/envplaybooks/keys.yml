@@ -1,0 +1,25 @@
+---
+- hosts: control
+  tasks: 
+  - name: Sending Key to node1
+    expect:
+      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@ans1.node.example.com 
+      responses:
+        'Are you sure you want to continue connecting': 'yes'
+        'password': 'password'
+        '\]\$': 'logout'
+      timeout: 10
+    become: yes
+    become_user: user
+    ignore_errors: yes
+  - name: Sending Key to node2
+    expect:
+      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@ans2.node.example.com 
+      responses:
+        'Are you sure you want to continue connecting': 'yes'
+        'password': 'password'
+        '\]\$': 'logout'
+      timeout: 10
+    become: yes
+    become_user: user
+    ignore_errors: yes
