@@ -27,7 +27,7 @@
     debug:
       msg:
         - 'Next Steps: Accessing The Systems:'
-        - '- IPA - 192.168.55.80'
+        - '- Control - 192.168.55.80'
         - '- System 1 - 192.168.55.81'
         - '- System 2 - 192.168.55.82'
         - '- Username - vagrant'
