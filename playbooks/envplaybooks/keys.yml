@@ -23,3 +23,14 @@
     become: yes
     become_user: user
     ignore_errors: yes
+  - name: Welcome to the Ansible 2.7 Study/Test Environment!
+    debug:
+      msg:
+        - 'Next Steps: Accessing The Systems:'
+        - '- IPA - 192.168.55.80'
+        - '- System 1 - 192.168.55.81'
+        - '- System 2 - 192.168.55.82'
+        - '- Username - vagrant'
+        - '- Password - vagrant'
+        - '- For root - use `sudo` or `sudo su`'
+        - '- Access example - `ssh vagrant@192.168.55.80`'
