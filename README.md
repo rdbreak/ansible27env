@@ -31,7 +31,7 @@ sudo snap install ruby ; sudo apt install ruby-bundler git -y; wget -c https://r
 ##### Also, install the Virtualbox extension pack below
 - [Virtual Box Extension Pack](https://www.virtualbox.org/wiki/Downloads)
 
-## Once the above software is installed. Do the following if you're running the environment on Mac/Linux:
+##### Once the above software is installed. Do the following if you're running the environment on Mac/Linux:
 1. Create a separate `~/bin` directory and `cd` to it.  (The directory doesn't have to be ~/bin, it can be anything you want.)
 2. Clone the environment repo to it with `git clone https://github.com/rdbreak/ansible27env.git`
 3. Change to the `ansible27env` directory that is now in your `~/bin` directory.
