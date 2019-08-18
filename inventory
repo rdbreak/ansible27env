@@ -1,10 +1,8 @@
-[all]
-control.node.example.com
-ans1.node.example.com
-ans2.node.example.com
 [control]
-control.node.example.com
+control.test.example.com ansible_host=192.168.55.60 ansible_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python
 [node1]
-ans1.node.example.com
+node1.test.example.com ansible_host=192.168.55.61 ansible_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python
 [node2]
-ans2.node.example.com
+node2.test.example.com ansible_host=192.168.55.62 ansible_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python
+[repo]
+repo.test.example.com ansible_host=192.168.55.59 ansible_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python

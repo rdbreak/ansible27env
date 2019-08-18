@@ -1,9 +1,0 @@
-all:
-  hosts: controller.example.com
-  children:
-    httpd: 
-      hosts:
-        node[2:3].example.com
-    ftp:
-      hosts:
-        node1.example.com

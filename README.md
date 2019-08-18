@@ -1,48 +1,89 @@
-# Ansible 2.7 Study/Test Environment powered by Ansible and Vagrant. 
+# Ansible 2.7 Automated Practice Environment
 
-## Required software before setting up:
-- Ansible - (`yum install ansible` or `brew install ansible`)
-- Python - (`yum install python`or `brew install python`)
-- [Vagrant](https://www.vagrantup.com/downloads.html) - (`brew cask install vagrant`)
-- [Virtualbox](https://www.virtualbox.org/wiki/Downloads) (`brew cask install VirtualBox`)
-- SSHPASS `brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb`
-### Install at once with the command below:
-(`brew install ansible ; brew install python ; brew cask install vagrant ; brew cask install VirtualBox ; brew install https://raw.githubusercontent.com/kadwanev/bigboybrew/master/Library/Formula/sshpass.rb`)
+_Powered by Ansible and Vagrant_ 
 
-If you're using a Mac, Gatekeeper will block virtualbox from installing. All you have to do is go to System Preferences and click Allow under the General tab and rerun installation.
+## Installation options below:
+## macOS
+_Gatekeeper will block virtualbox from installing. All you have to do is go to Security & Privacy of System Preferences and click Allow under the General tab and rerun installation._
+##### Install all at once with the command below:
+`brew install ansible ; brew install python ; brew cask install vagrant ; brew cask install VirtualBox ; brew cask install virtualbox-extension-pack`
+##### Alternatively, you can install everything individually below.
+- [Latest Version of Vagrant](https://www.vagrantup.com/downloads.html) - (`brew cask install vagrant`)
+    - Vagrant Plugin - `vagrant plugin install vagrant-guest_ansible`
+- [Latest Version of Virtualbox](https://www.virtualbox.org/wiki/Downloads) (`brew cask install VirtualBox`)
+- Virtual Box Extension Pack (`brew cask install virtualbox-extension-pack`)
 
-## Set Up Instructions
-1. Create a seperate `~/bin` directory and `cd` to it. 
-2. Clone the environment repo to it with `git clone https://github.com/rdbreak/ansibleenv.git`
-3. Change to the `ansibleenv` directory that is now in your `~/bin` directory.
-3. Run `vagrant up --provider virtualbox` to deploy the environment _(You must be in the directory you cloned the repo to in order to run vagrant commands.)_
+## CentOS/RHEL 7 - Install all at once by Copy/Pasting the below command into your terminal as root.
+_NOTE - If it's been awhile since you've run yum update, do that first. Reboot if the kernel was updated._
+```
+systemctl stop packagekit; yum install -y epel-release && yum install -y git binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms libvirt libvirt-devel ruby-devel libxslt-devel libxml2-devel libguestfs-tools-c ; mkdir ~/Vagrant ; cd ~/Vagrant ; curl -o  vagrant_2.2.5_x86_64.rpm https://releases.hashicorp.com/vagrant/2.2.5/vagrant_2.2.5_x86_64.rpm && yum install -y vagrant_2.2.5_x86_64.rpm && vagrant plugin install vagrant-guest_ansible ; vagrant plugin install vagrant-libvirt ; wget -O /etc/yum.repos.d/virtualbox.repo wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo ; yum install -y VirtualBox-6.0 && systemctl start packagekit
+```
+##### Also, install the Virtualbox extension pack below
+- [Virtual Box Extension Pack](https://www.virtualbox.org/wiki/Downloads)
 
-*Also, don't be spooked by any red font during the setup process. It won't have an affect on your exam environment.* 
+## Debian
+- Install Ruby/Bundler/Git - `sudo snap install ruby ; sudo apt install ruby-bundler git -y`
+- Vagrant - `wget -c https://releases.hashicorp.com/vagrant/2.2.5/vagrant_2.2.5_x86_64.deb ; sudo dpkg -i vagrant_2.2.5_x86_64.deb`
+- Vagrant Plugin - `vagrant plugin install vagrant-guest-ansible`
+- Virtualbox ````wget -q https://www.virtualbox.org/download/oracle_vbox_2016.asc -O- | sudo apt-key add - ; wget -q https://www.virtualbox.org/download/oracle_vbox.asc -O- | sudo apt-key add - ; sudo add-apt-repository "deb http://download.virtualbox.org/virtualbox/debian bionic contrib"; sudo apt update; sudo apt install -y virtualbox-6.0``` 
+- Virtual Box Extension Pack](https://www.virtualbox.org/wiki/Downloads)
 
-_NOTE - You can use the VirtualBox console to interact with the VMs or through a terminal. If you need to reset the root password, you would need to use the console though._
+## Windows 
+- [Latest Version of Vagrant](https://www.vagrantup.com/downloads.html)
+    - Vagrant Plugin - `vagrant plugin install vagrant-guest_ansible`
+- [Latest Version of Virtualbox and Virtual Box Extension Pack](https://www.virtualbox.org/wiki/Downloads)
 
-The first time you run the vagrant up command, it will download the OS images for later use. In other words, it will take longest the first time around but will be faster when it is deployed again. You can run `vagrant destroy -f` to destroy your environment at anytime. **This will erase everything**. This environment is meant to be reuseable, If you run the `vagrant up --provider virtualbox` command after destroying the environment, the OS image will already be downloaded and environment will deploy faster. Everything should be provided that you would normally need during an actual exam. Hope this helps in your studies!
+_Now you should be ready to follow the next steps and get the deployment up and running!_
 
-### It includes three systems:
-- control.node.example.com
-- ans1.node.example.com
-- ans2.node.example.com
+## Once the above software is installed. Do the following if you're running the environment on Mac/Linux:
+1. Create a separate `~/bin` directory and `cd` to it.  (The directory doesn't have to be ~/bin, it can be anything you want.)
+2. Clone the environment repo to it with `git clone https://github.com/rdbreak/ansible27env.git`
+3. Change to the `ansible27env` directory that is now in your `~/bin` directory.
+4. Run `vagrant up` to deploy the environment 
 
-### Network Details:
-###### control
-192.168.55.80
-###### node1
-192.168.55.81
-###### node2
-192.168.55.82
+## Once the above software is installed. Do the following if you're running the environment on Windows:
+1. Create a separate `~/bin` directory and `cd` to it.  (The directory doesn't have to be ~/bin, it can be anything you want.)
+2. Use your browser of choice and navigate to https://github.com/rdbreak/ansible27env, press the green “Clone or download” button then the “Download ZIP” button.
+3. Once downloaded, unzip the file and move it to the directory you created earlier, `~/bin` in the above example.
+3. Open CMD prompt and cd to the `~/bin/ansible27env` directory then run `vagrant up` to deploy the environment
 
-### Accessing the systems
-Remember to add the IP addresses to your local host file if you want to connect to the guest systems with the hostname.
-Username - user
-Password - password
-- For root - use `sudo` or `sudo su`
-Access example - `ssh user@192.168.55.81`
+**Also, don't be spooked by any scary red font during the setup process. There are known issues that won't have a negative affect on the environment.**
+
+_NOTE - You can also use the VirtualBox console to interact with the VMs or through a terminal. If you need to reset the root password, you would need to use the console._
+
+## (Optional) Install Github Desktop to make pulling down changes easier
+_NOTE this requires a free Github account_
+1. Navigate to https://desktop.github.com/ and download Github Desktop.
+2. Create or sign in to your account.
+3. Clone or pull changes to respctive repo
+
+## Other Useful Information:
+I'm constantly making upgrades to the environments, so every once and awhile run `git pull` in the repo directory to pull down changes. The first time you run the vagrant up command, it will download the OS images for later use. In other words, it will take longest the first time around but will be faster when it is deployed again. You can run `vagrant destroy -f` to destroy your environment at anytime. **This will erase everything**. This environment is meant to be reuseable, If you run the `vagrant up` command after destroying the environment, the OS image will already be downloaded and environment will deploy faster. Deployment should take around 15 minutes depending on your computer. You shouldn't need to access the IPA server during your practice exams. Everything should be provided that you would normally need during an actual exam. Hope this helps in your studies!
+
+## Included systems:
+- repo.test.example.com
+- control.test.example.com
+- node1.test.example.com
+- node2.test.example.com
+
+## System Details:
+> repo
+- 192.168.55.59
+- Gateway - 192.168.55.1
+- DNS - 8.8.8.8
+> control
+- 192.168.55.60
+- Gateway - 192.168.55.1
+- DNS - 8.8.8.8
+> node1
+- 192.168.55.61
+- Gateway - 192.168.55.1
+- DNS - 8.8.8.8
+> node2
+- 192.168.55.62
+- Gateway - 192.168.55.1
+- DNS - 8.8.8.8
 
 ## Help
-If you're having problems with the environment, please submit an issue by going to the `ISSUES` tab at the top. If you have more questions, looking for practice exams to use against this environment, or just looking for a fantastic Red Hat community to join, please navigate to #practiceexam in the [Red Hat Certs Slack Workspace](https://join.slack.com/t/redhat-certs/shared_invite/enQtNjAxNDc3MzYyMTAxLWZlM2ZhMGRlNGI2YjQyMzQ4NWEyNDIyYTJiNzcxM2E1ZDVkZmQ4MzU2MTc0ZDRlNzg2MTU5NWIwZjFjZDdjMGE).
-
+If you're having problems with the environment, please submit an issue by going to the `ISSUES` tab at the top. If you have more questions, looking for practice exams to use against this environment, or just looking for a fantastic Red Hat community to join, please navigate to #practiceexam in the [Red Hat Certs Slack Workspace](https://join.slack.com/t/redhat-certs/shared_invite/enQtNjI4Mjk1OTA4NDk4LTBiMWQ1OGM5MmJhZjhlNGZiNjMxYmViMGI2OTdjMDY4NjZkYTliYTE4M2IwYzFkYTJlMThjNmFlNDZmOTIyZTQ).
+# ipasetup
