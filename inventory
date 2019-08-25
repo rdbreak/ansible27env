@@ -1,5 +1,5 @@
-[control]
-control.test.example.com ansible_host=192.168.55.60 ansible_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python
+[master]
+master.test.example.com ansible_host=192.168.55.60 ansible_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python
 [node1]
 node1.test.example.com ansible_host=192.168.55.61 ansible_user=vagrant ansible_ssh_pass=vagrant ansible_python_interpreter=/usr/bin/python
 [node2]

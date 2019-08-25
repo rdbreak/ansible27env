@@ -24,10 +24,10 @@
       path: /etc/hosts
       line: 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
       create: yes
-  - name: Adding control address to hosts file
+  - name: Adding master address to hosts file
     lineinfile:
       path: /etc/hosts
-      line: 192.168.55.60 control.test.example.com control
+      line: 192.168.55.60 master.test.example.com master
       create: yes
   - name: Adding Repo address to hosts file
     lineinfile:
