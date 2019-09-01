@@ -22,7 +22,7 @@ _Gatekeeper will block virtualbox from installing. All you have to do is go to S
 ## CentOS/RHEL 7 - Install all at once by Copy/Pasting the below command into your terminal as root.
 _NOTE - If it's been awhile since you've run yum update, do that first. Reboot if the kernel was updated._
 ```
-systemctl stop packagekit; yum install -y epel-release && yum install -y git binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms libvirt libvirt-devel ruby-devel libxslt-devel libxml2-devel libguestfs-tools-c ; mkdir ~/Vagrant ; cd ~/Vagrant ; curl -o  vagrant_2.2.5_x86_64.rpm https://releases.hashicorp.com/vagrant/2.2.5/vagrant_2.2.5_x86_64.rpm && yum install -y vagrant_2.2.5_x86_64.rpm && vagrant plugin install vagrant-guest-ansible ; vagrant plugin install vagrant-libvirt ; vagrant plugin install vagrant-guest-ansible ; wget -O /etc/yum.repos.d/virtualbox.repo wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo ; yum install -y VirtualBox-6.0 && systemctl start packagekit
+systemctl stop packagekit; yum install -y epel-release && yum install -y git binutils gcc make patch libgomp glibc-headers glibc-devel kernel-headers kernel-devel dkms libvirt libvirt-devel ruby-devel libxslt-devel libxml2-devel libguestfs-tools-c ; mkdir ~/Vagrant ; cd ~/Vagrant ; curl -o  vagrant_2.2.5_x86_64.rpm https://releases.hashicorp.com/vagrant/2.2.5/vagrant_2.2.5_x86_64.rpm && yum install -y vagrant_2.2.5_x86_64.rpm && vagrant plugin install vagrant-guest_ansible ; vagrant plugin install vagrant-libvirt ; vagrant plugin install vagrant-guest-ansible ; wget -O /etc/yum.repos.d/virtualbox.repo wget http://download.virtualbox.org/virtualbox/rpm/rhel/virtualbox.repo ; yum install -y VirtualBox-6.0 && systemctl start packagekit
 ```
 ##### Also, install the Virtualbox extension pack below
 - [Virtual Box Extension Pack](https://www.virtualbox.org/wiki/Downloads)
@@ -62,7 +62,7 @@ _Now the deployment should be up and running!_
 _NOTE this requires a free Github account_
 1. Navigate to https://desktop.github.com/ and download Github Desktop.
 2. Create or sign in to your account.
-3. Clone or pull changes to respctive repo
+3. Clone or pull changes to  repo
 
 ## Other Useful Information:
 You can also use the VirtualBox console to interact with the VMs or through a terminal. If you need to reset the root password, you would need to use the console. I'm constantly making upgrades to the environments, so every once and awhile run `git pull` in the repo directory to pull down changes. The first time you run the vagrant up command, it will download the OS images for later use. In other words, it will take longest the first time around but will be faster when it is deployed again. You can run `vagrant destroy -f` to destroy your environment at anytime. **This will erase everything**. This environment is meant to be reuseable, If you run the `vagrant up` command after destroying the environment, the OS image will already be downloaded and environment will deploy faster. Deployment should take around 15 minutes depending on your computer. You shouldn't need to access the IPA server during your practice exams. Everything should be provided that you would normally need during an actual exam. Hope this helps in your studies!
@@ -85,6 +85,10 @@ You can also use the VirtualBox console to interact with the VMs or through a te
 - 192.168.55.62
 - Gateway - 192.168.55.1
 - DNS - 8.8.8.8
+
+##Username/Password
+- Username = vagrant
+- Password = vagrant
 
 ## Help
 If you're having problems with the environment, please submit an issue by going to the `ISSUES` tab at the top. If you have more questions, looking for practice exams to use against this environment, or just looking for a fantastic Red Hat community to join, please navigate to #practiceexam in the [Red Hat Certs Slack Workspace](https://join.slack.com/t/redhat-certs/shared_invite/enQtNjI4Mjk1OTA4NDk4LTBiMWQ1OGM5MmJhZjhlNGZiNjMxYmViMGI2OTdjMDY4NjZkYTliYTE4M2IwYzFkYTJlMThjNmFlNDZmOTIyZTQ).
