@@ -6,6 +6,7 @@
       command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@node1.test.example.com 
       responses:
         'Are you sure you want to continue connecting': 'yes'
+        "user@node1.test.example.com's password": 'password'
         'password': 'password'
         '\]\$': 'logout'
       timeout: 10
@@ -17,6 +18,19 @@
       command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@node2.test.example.com 
       responses:
         'Are you sure you want to continue connecting': 'yes'
+        "user@node2.test.example.com's password": 'password'
+        'password': 'password'
+        '\]\$': 'logout'
+      timeout: 10
+    become: yes
+    become_user: user
+    ignore_errors: yes
+  - name: Sending Key to node3
+    expect:
+      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@node3.test.example.com 
+      responses:
+        'Are you sure you want to continue connecting': 'yes'
+        "user@node3.test.example.com's password": 'password'
         'password': 'password'
         '\]\$': 'logout'
       timeout: 10
@@ -28,8 +42,9 @@
       msg:
         - 'Next Steps: Accessing The Systems:'
         - '- Control - 192.168.55.60'
-        - '- System 1 - 192.168.55.61'
-        - '- System 2 - 192.168.55.62'
+        - '- Node 1 - 192.168.55.61'
+        - '- Node 2 - 192.168.55.62'
+        - '- Node 3 - 192.168.55.63'
         - '- Username - user'
         - '- Password - password'
         - '- For root - use `sudo` or `sudo su`'

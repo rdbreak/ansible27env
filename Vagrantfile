@@ -11,7 +11,6 @@ config.vm.define "node1" do |node1|
   node1.vm.provider "virtualbox" do |node1|
     node1.memory = "1024"
   end
-
 end
 
 config.vm.define "node2" do |node2|
@@ -20,6 +19,15 @@ config.vm.define "node2" do |node2|
 node2.vm.network "private_network", ip: "192.168.55.62"
   node2.vm.provider "virtualbox" do |node2|
     node2.memory = "1024"
+  end
+end
+
+config.vm.define "node3" do |node3|
+  node3.vm.box = "rdbreak/ansible27node"
+#  node3.vm.hostname = "node3.test.example.com"
+node3.vm.network "private_network", ip: "192.168.55.63"
+  node3.vm.provider "virtualbox" do |node3|
+    node3.memory = "1024"
   end
 end
 

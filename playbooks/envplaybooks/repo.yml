@@ -14,15 +14,22 @@
       append: yes
   - name: Changing User Password
     shell: echo password | sudo passwd user --stdin
+  - name: Make sure user is in the sudoers configuration
+    lineinfile:
+      path: /etc/sudoers
+      regexp: '^# %users  localhost'
+      insertafter: '^# %users  localhost'
+      line: 'user ALL=(ALL) NOPASSWD: ALL'
+      state: present
   - name: Fixing Stupid SELinux
     sefcontext:
       target: '/var/www/html/rpms(/.*)?'
       setype: httpd_sys_content_t
       state: present
-  - name: Restoring Contexts
-    command: restorecon -R /var/www/html/rpms/
   - name: Ready Repo 1!
     command: createrepo /var/www/html/rpms/75rpms
+  - name: Restoring Contexts
+    command: restorecon -R /var/www/html/rpms/
   - name: Fixing hosts file
     lineinfile:
       dest: /etc/hosts

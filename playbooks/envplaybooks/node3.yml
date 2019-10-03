@@ -1,11 +1,11 @@
 ---
-- hosts: node2
+- hosts: node3
   strategy: free
   gather_facts: true
   become: true
   tasks:
   - name: Setting Hostname
-    command: hostnamectl set-hostname node2.test.example.com
+    command: hostnamectl set-hostname node3.test.example.com
   - name: Creating Ansible User
     user:
       name: user
@@ -58,6 +58,11 @@
       create: yes
   - name: Erasing Repos
     shell: rm -rf /etc/yum.repos.d/*
+  - name: Creating Repo File
+    file:
+      path: /etc/yum.repos.d/rpms.repo
+      state: touch
+      mode: 0755
   - name: Building Repo File
     blockinfile:
       dest: /etc/yum.repos.d/rpms.repo
@@ -89,25 +94,25 @@
     blockinfile:
       dest: /etc/profile.d/welcome.sh
       block: |
-         #!/bin/bash
-         #
-         echo -e '       
-         #           _            _           _           _        _       
-         #          /\ \     _   /\ \        /\ \        /\ \    /\ \      
-         #         /  \ \   /\_\/  \ \      /  \ \____  /  \ \  /  \ \     
-         #        / /\ \ \_/ / / /\ \ \    / /\ \_____\/ /\ \ \/ /\ \ \    
-         #       / / /\ \___/ / / /\ \ \  / / /\/___  / / /\ \_\/_/\ \ \   
-         #      / / /  \/____/ / /  \ \_\/ / /   / / / /_/_ \/_/   / / /   
-         #     / / /    / / / / /   / / / / /   / / / /____/\     / / /    
-         #    / / /    / / / / /   / / / / /   / / / /\____\/    / / /  _  
-         #   / / /    / / / / /___/ / /\ \ \__/ / / / /______   / / /_/\_\ 
-         #  / / /    / / / / /____\/ /  \ \___\/ / / /_______\ / /_____/ / 
-         #  \/_/     \/_/\/_________/    \/_____/\/__________/ \________/  
-         '"#
-         #
-         # You are logged into \"`hostname`\" as user \"`whoami`\"
-         # This system is running `cat /etc/redhat-release`
-         # kernel is `uname -r`
-         #
-         "
+        #!/bin/bash
+        #
+        echo -e '       
+        #           _            _           _           _         _          
+        #          /\ \     _   /\ \        /\ \        /\ \     /\ \         
+        #         /  \ \   /\_\/  \ \      /  \ \____  /  \ \   /  \ \        
+        #        / /\ \ \_/ / / /\ \ \    / /\ \_____\/ /\ \ \ / /\ \ \       
+        #       / / /\ \___/ / / /\ \ \  / / /\/___  / / /\ \_/ / /\ \ \      
+        #      / / /  \/____/ / /  \ \_\/ / /   / / / /_/_ \/_\/_//_\ \ \     
+        #     / / /    / / / / /   / / / / /   / / / /____/\    __\___ \ \    
+        #    / / /    / / / / /   / / / / /   / / / /\____\/   / /\   \ \ \   
+        #   / / /    / / / / /___/ / /\ \ \__/ / / / /______  / /_/____\ \ \  
+        #  / / /    / / / / /____\/ /  \ \___\/ / / /_______\/__________\ \ \ 
+        #  \/_/     \/_/\/_________/    \/_____/\/__________/\_____________\/ 
+        '"#
+        #
+        # You are logged into \"`hostname`\" as user \"`whoami`\"
+        # This system is running `cat /etc/redhat-release`
+        # kernel is `uname -r`
+        #
+        "
 ...
