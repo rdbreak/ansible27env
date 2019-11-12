@@ -79,7 +79,7 @@
   - name: Removing Existing RSA Key
     shell: rm -f /home/user/.ssh/id_rsa
   - name: Generating New RSA Key
-    shell: ssh-keygen -q -t rsa -f /home/user/.ssh/id_rsa -C "" -N ""
+    command: ssh-keygen -q -t rsa -f /home/user/.ssh/id_rsa -C "" -N ""
     args: 
       creates: /home/user/.ssh/id_rsa
     become_user: user

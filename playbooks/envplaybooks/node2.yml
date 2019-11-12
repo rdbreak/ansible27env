@@ -68,11 +68,6 @@
        gpgcheck=0
        enabled=1
       create: yes
-  - name: Generating RSA Key
-    command : ssh-keygen -q -t rsa -f /etc/ssh/ssh_host_rsa_key -C "" -N ""
-    args:
-      creates: /etc/ssh/ssh_host_rsa_key
-    ignore_errors: yes
   - name: Fixing Resolv File
     shell: echo 'nameserver 8.8.8.8' > /etc/resolv.conf
   - name: Enabling services
