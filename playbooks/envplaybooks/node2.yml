@@ -5,8 +5,8 @@
   become: true
   tasks:
   - name: Setting Hostname
-    command: hostnamectl set-hostname node2.test.example.com
-  - name: Creating Ansible User
+    hostname: name=node2.test.example.com
+  - name: Creating User Account
     user:
       name: user
       shell: /bin/bash
@@ -14,7 +14,7 @@
       append: yes
   - name: Changing User Password
     shell: echo password | sudo passwd user --stdin
-  - name: Make sure user is in the sudoers configuration
+  - name: Checking Sudoers Configuration
     lineinfile:
       path: /etc/sudoers
       regexp: '^# %users  localhost'
@@ -27,35 +27,10 @@
       regexp: '^127\.0\.0\.1'
       state: absent
   - name: Rebuilding host file
-    lineinfile:
-      path: /etc/hosts
-      line: 127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4
-      create: yes
-  - name: Adding control address to hosts file
-    lineinfile:
-      path: /etc/hosts
-      line: 192.168.55.60 control.test.example.com control
-      create: yes
-  - name: Adding Repo address to hosts file
-    lineinfile:
-      path: /etc/hosts
-      line: 192.168.55.59 repo.test.example.com repo
-      create: yes
-  - name: Adding node1 IP address to hosts file
-    lineinfile:
-      path: /etc/hosts
-      line: 192.168.55.61 node1.test.example.com node1
-      create: yes
-  - name: Adding node2 IP address to hosts file
-    lineinfile:
-      path: /etc/hosts
-      line: 192.168.55.62 node2.test.example.com node2
-      create: yes
-  - name: Adding node3 IP address to hosts file
-    lineinfile:
-      path: /etc/hosts
-      line: 192.168.55.63 node3.test.example.com node3
-      create: yes
+    copy:
+      dest: /etc/hosts
+      content: "127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4\n192.168.55.59 repo.test.example.com repo\n192.168.55.60 control.test.example.com control\n192.168.55.61 node1.test.example.com node1\n192.168.55.62 node2.test.example.com node2\n192.168.55.63 node3.test.example.com node3"
+      force: yes
   - name: Erasing Repos
     shell: rm -rf /etc/yum.repos.d/*
   - name: Building Repo File
@@ -70,10 +45,6 @@
       create: yes
   - name: Fixing Resolv File
     shell: echo 'nameserver 8.8.8.8' > /etc/resolv.conf
-  - name: Enabling services
-    service: name=firewalld enabled=true
-  - name: Starting services
-    service: name=firewalld state=started
     tags: repo
   - name: Creating Welcome Message
     file:
@@ -100,9 +71,8 @@
          #  \/_/     \/_/\/_________/    \/_____/\/__________/ \________/  
          '"#
          #
-         # You are logged into \"`hostname`\" as user \"`whoami`\"
+         # You are logged into \"`hostname`\" as the \"`whoami`\" account.
          # This system is running `cat /etc/redhat-release`
-         # kernel is `uname -r`
          #
          "
 ...

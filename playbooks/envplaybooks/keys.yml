@@ -1,5 +1,6 @@
 ---
-- hosts: control
+- name: Key Authentication
+  hosts: control
   tasks: 
   - name: Sending Key to node1
     expect:
