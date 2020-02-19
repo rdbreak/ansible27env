@@ -5,7 +5,7 @@
   gather_facts: false
   tasks:
   - name: Setting Hostname
-    hostname: name=repo.test.example.com
+    hostname: name=repo.ansi.example.com
   - name: Creating User Account
     user:
       name: user
@@ -32,7 +32,7 @@
     command: restorecon -R /var/www/html/rpms/
   - name: Building host file
     copy:
-      content: "127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4\n192.168.55.60 control.test.example.com control\n192.168.55.59 repo.test.example.com repo\n192.168.55.61 node1.test.example.com node1\n192.168.55.62 node2.test.example.com node2\n192.168.55.63 node3.test.example.com node3"
+      content: "127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4\n192.168.55.60 control.ansi.example.com control\n192.168.55.59 repo.ansi.example.com repo\n192.168.55.61 node1.ansi.example.com node1\n192.168.55.62 node2.ansi.example.com node2\n192.168.55.63 node3.ansi.example.com node3"
       dest: /etc/hosts
       force: yes
   - name: Enabling services

@@ -4,10 +4,10 @@
   tasks: 
   - name: Sending Key to node1
     expect:
-      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@node1.test.example.com 
+      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@node1.ansi.example.com 
       responses:
         'Are you sure you want to continue connecting': 'yes'
-        "user@node1.test.example.com's password": 'password'
+        "user@node1.ansi.example.com's password": 'password'
         'password': 'password'
         '\]\$': 'logout'
       timeout: 10
@@ -16,10 +16,10 @@
     ignore_errors: yes
   - name: Sending Key to node2
     expect:
-      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@node2.test.example.com 
+      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@node2.ansi.example.com 
       responses:
         'Are you sure you want to continue connecting': 'yes'
-        "user@node2.test.example.com's password": 'password'
+        "user@node2.ansi.example.com's password": 'password'
         'password': 'password'
         '\]\$': 'logout'
       timeout: 10
@@ -28,10 +28,10 @@
     ignore_errors: yes
   - name: Sending Key to node3
     expect:
-      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@node3.test.example.com 
+      command: ssh-copy-id -i /home/user/.ssh/id_rsa.pub user@node3.ansi.example.com 
       responses:
         'Are you sure you want to continue connecting': 'yes'
-        "user@node3.test.example.com's password": 'password'
+        "user@node3.ansi.example.com's password": 'password'
         'password': 'password'
         '\]\$': 'logout'
       timeout: 10
