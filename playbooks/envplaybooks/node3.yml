@@ -23,8 +23,8 @@
       state: present
   - name: Building host file
     copy:
-      dest: /etc/hosts
       content: "127.0.0.1   localhost localhost.localdomain localhost4 localhost4.localdomain4\n192.168.55.59 repo.ansi.example.com repo\n192.168.55.60 control.ansi.example.com control\n192.168.55.61 node1.ansi.example.com node1\n192.168.55.62 node2.ansi.example.com node2\n192.168.55.63 node3.ansi.example.com node3"
+      dest: /etc/hosts
       force: yes
   - name: Erasing Repos
     shell: rm -rf /etc/yum.repos.d/*
