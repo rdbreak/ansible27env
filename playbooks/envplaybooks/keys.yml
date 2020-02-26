@@ -46,7 +46,7 @@
         - '- Node 1 - 192.168.55.61'
         - '- Node 2 - 192.168.55.62'
         - '- Node 3 - 192.168.55.63'
-        - '- Username - user'
+        - '- Username - user or root'
         - '- Password - password'
         - '- For root - use `sudo` or `sudo su`'
         - '- Access example - ssh user@192.168.55.60'
